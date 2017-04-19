@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
 import {
   QueryRenderer,
   graphql,
@@ -12,11 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-
+        <h2>Tiny GitHunt</h2>
         <QueryRenderer
           environment={environment}
 
@@ -38,14 +33,30 @@ class App extends Component {
             if (error) {
               return <div>{error.message}</div>;
             } else if (props) {
-              return <div>{JSON.stringify(props.feed)}</div>;
+              console.log(props.feed);
+              return <Feed feed={props.feed} />;
             }
             return <div>Loading</div>;
           }}
         />
+        <h3>More info</h3>
+        <ul>
+          <li><a href="http://www.githunt.com/">Full GitHunt App</a></li>
+          <li><a href="https://github.com/stubailo/relay-modern-hello-world">Improve this example on GitHub</a></li>
+        </ul>
       </div>
     );
   }
 }
+
+const Feed = ({ feed }) => (
+  <ol>
+    {feed.map(entry => (
+      <li key={entry.repository.owner.login + '/' + entry.repository.name}>
+        {entry.repository.owner.login}/{entry.repository.name}: {entry.repository.stargazers_count} Stars
+      </li>
+    ))}
+  </ol>
+)
 
 export default App;
