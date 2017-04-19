@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {
+  QueryRenderer,
+  graphql,
+} from 'react-relay';
+
+import environment from './createRelayEnvironment';
 
 class App extends Component {
   render() {
@@ -10,9 +16,32 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <QueryRenderer
+          environment={environment}
+
+          query={graphql`
+            query AppFeedQuery {
+              feed (type: TOP, limit: 5) {
+                repository {
+                  owner { login }
+                  name
+                }
+
+                postedBy { login }
+              }
+            }
+          `}
+
+          render={({error, props}) => {
+            if (error) {
+              return <div>{error.message}</div>;
+            } else if (props) {
+              return <div>{JSON.stringify(props.feed)}</div>;
+            }
+            return <div>Loading</div>;
+          }}
+        />
       </div>
     );
   }
