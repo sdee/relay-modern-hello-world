@@ -3,8 +3,8 @@
  *   relay-compiler
  *
  * @providesModule AppFeedQuery.graphql
- * @generated SignedSource<<db36f39e027e97c23cc16d6f6b2629a2>>
- * @relayHash b7c59720364cb32ea8be194add3adc2d
+ * @generated SignedSource<<3e3bf187ca55521cb6ac257dccc1d86d>>
+ * @relayHash d6085cdf32b7ece02c29adc43f206a47
  * @flow
  * @nogrep
  */
@@ -20,7 +20,7 @@ import type {ConcreteBatch} from 'relay-runtime';
 
 /*
 query AppFeedQuery {
-  feed(type: TOP, limit: 5) {
+  feed(type: NEW, limit: 5) {
     repository {
       owner {
         login
@@ -55,7 +55,7 @@ const batch /*: ConcreteBatch*/ = {
           {
             "kind": "Literal",
             "name": "type",
-            "value": "TOP",
+            "value": "NEW",
             "type": "FeedType!"
           }
         ],
@@ -125,7 +125,7 @@ const batch /*: ConcreteBatch*/ = {
             "storageKey": null
           }
         ],
-        "storageKey": "feed{\"limit\":5,\"type\":\"TOP\"}"
+        "storageKey": "feed{\"limit\":5,\"type\":\"NEW\"}"
       }
     ],
     "type": "Query"
@@ -153,7 +153,7 @@ const batch /*: ConcreteBatch*/ = {
           {
             "kind": "Literal",
             "name": "type",
-            "value": "TOP",
+            "value": "NEW",
             "type": "FeedType!"
           }
         ],
@@ -223,11 +223,11 @@ const batch /*: ConcreteBatch*/ = {
             "storageKey": null
           }
         ],
-        "storageKey": "feed{\"limit\":5,\"type\":\"TOP\"}"
+        "storageKey": "feed{\"limit\":5,\"type\":\"NEW\"}"
       }
     ]
   },
-  "text": "query AppFeedQuery {\n  feed(type: TOP, limit: 5) {\n    repository {\n      owner {\n        login\n      }\n      name\n      stargazers_count\n    }\n    postedBy {\n      login\n    }\n  }\n}\n"
+  "text": "query AppFeedQuery {\n  feed(type: NEW, limit: 5) {\n    repository {\n      owner {\n        login\n      }\n      name\n      stargazers_count\n    }\n    postedBy {\n      login\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

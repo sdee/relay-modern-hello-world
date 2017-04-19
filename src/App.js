@@ -17,7 +17,7 @@ class App extends Component {
 
           query={graphql`
             query AppFeedQuery {
-              feed (type: TOP, limit: 5) {
+              feed (type: NEW, limit: 5) {
                 repository {
                   owner { login }
                   name
