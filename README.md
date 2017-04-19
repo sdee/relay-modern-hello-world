@@ -2,6 +2,8 @@
 
 This is a simple ejected `create-react-app` project with the minimal parts added to load a query with the [Relay Modern](https://facebook.github.io/relay/docs/relay-modern.html) release candidate. It calls a remote server that we use for a lot of example apps, the [GitHunt](http://www.githunt.com/) app, which is like a clone of Product Hunt for GitHub repositories. You can get access to [GraphiQL here](http://api.githunt.com/graphiql), and the [code for the server](https://github.com/apollographql/githunt-api) is available as well.
 
+This example was prepared as part of an [in-depth blog post about Relay Modern](https://dev-blog.apollodata.com/exploring-relay-modern-276f5965f827).
+
 ## Running the app
 
 ```
