@@ -3,8 +3,8 @@
  *   relay-compiler
  *
  * @providesModule AppFeedQuery.graphql
- * @generated SignedSource<<7d2528f2d1083b3ce56a69d23890f54d>>
- * @relayHash 9ce8594a8bb27e08d0df2e1954ee4992
+ * @generated SignedSource<<db36f39e027e97c23cc16d6f6b2629a2>>
+ * @relayHash b7c59720364cb32ea8be194add3adc2d
  * @flow
  * @nogrep
  */
@@ -26,6 +26,7 @@ query AppFeedQuery {
         login
       }
       name
+      stargazers_count
     }
     postedBy {
       login
@@ -93,6 +94,13 @@ const batch /*: ConcreteBatch*/ = {
                 "alias": null,
                 "args": null,
                 "name": "name",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "stargazers_count",
                 "storageKey": null
               }
             ],
@@ -185,6 +193,13 @@ const batch /*: ConcreteBatch*/ = {
                 "args": null,
                 "name": "name",
                 "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "stargazers_count",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -212,7 +227,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppFeedQuery {\n  feed(type: TOP, limit: 5) {\n    repository {\n      owner {\n        login\n      }\n      name\n    }\n    postedBy {\n      login\n    }\n  }\n}\n"
+  "text": "query AppFeedQuery {\n  feed(type: TOP, limit: 5) {\n    repository {\n      owner {\n        login\n      }\n      name\n      stargazers_count\n    }\n    postedBy {\n      login\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

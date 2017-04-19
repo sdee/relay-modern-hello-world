@@ -26,6 +26,7 @@ class App extends Component {
                 repository {
                   owner { login }
                   name
+                  stargazers_count
                 }
 
                 postedBy { login }

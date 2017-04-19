@@ -15,7 +15,10 @@ function fetchQuery(
 ) {
   return fetch('http://api.githunt.com/graphql', {
     method: 'POST',
-    headers: {}, // Add authentication and other headers here
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, // Add authentication and other headers here
     body: JSON.stringify({
       query: operation.text, // GraphQL text from input
       variables,
