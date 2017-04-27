@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import {
   QueryRenderer,
-  graphql,
+  graphql
 } from 'react-relay';
 
 import environment from './createRelayEnvironment';
+import Feed from './Feed';
 
 class App extends Component {
   render() {
@@ -18,13 +19,7 @@ class App extends Component {
           query={graphql`
             query AppFeedQuery {
               feed (type: NEW, limit: 5) {
-                repository {
-                  owner { login }
-                  name
-                  stargazers_count
-                }
-
-                postedBy { login }
+                ...Feed
               }
             }
           `}
@@ -34,7 +29,7 @@ class App extends Component {
               return <div>{error.message}</div>;
             } else if (props) {
               console.log(props.feed);
-              return <Feed feed={props.feed} />;
+              return <Feed data={props.feed} />;
             }
             return <div>Loading</div>;
           }}
@@ -48,15 +43,5 @@ class App extends Component {
     );
   }
 }
-
-const Feed = ({ feed }) => (
-  <ol>
-    {feed.map(entry => (
-      <li key={entry.repository.owner.login + '/' + entry.repository.name}>
-        {entry.repository.owner.login}/{entry.repository.name}: {entry.repository.stargazers_count} Stars
-      </li>
-    ))}
-  </ol>
-)
 
 export default App;
