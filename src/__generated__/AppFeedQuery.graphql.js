@@ -3,8 +3,8 @@
  *   relay-compiler
  *
  * @providesModule AppFeedQuery.graphql
- * @generated SignedSource<<3e3bf187ca55521cb6ac257dccc1d86d>>
- * @relayHash d6085cdf32b7ece02c29adc43f206a47
+ * @generated SignedSource<<e80ae7016db63d43d389c7b841b22acd>>
+ * @relayHash 353e010cb78d082b29cb63ee7e9027b3
  * @flow
  * @nogrep
  */
@@ -21,16 +21,30 @@ import type {ConcreteBatch} from 'relay-runtime';
 /*
 query AppFeedQuery {
   feed(type: NEW, limit: 5) {
-    repository {
-      owner {
-        login
-      }
-      name
-      stargazers_count
-    }
-    postedBy {
+    ...Feed
+  }
+}
+
+fragment Feed on Entry {
+  repository {
+    owner {
       login
     }
+    name
+  }
+  ...FeedEntry
+}
+
+fragment FeedEntry on Entry {
+  repository {
+    owner {
+      login
+    }
+    name
+    stargazers_count
+  }
+  postedBy {
+    login
   }
 }
 */
@@ -64,65 +78,9 @@ const batch /*: ConcreteBatch*/ = {
         "plural": true,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "Repository",
-            "name": "repository",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "User",
-                "name": "owner",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "login",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "name",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "stargazers_count",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "name": "postedBy",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "login",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "Feed",
+            "args": null
           }
         ],
         "storageKey": "feed{\"limit\":5,\"type\":\"NEW\"}"
@@ -162,19 +120,58 @@ const batch /*: ConcreteBatch*/ = {
         "plural": true,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "Repository",
-            "name": "repository",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "Entry",
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
+                "concreteType": "Repository",
+                "name": "repository",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "User",
+                    "name": "owner",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "login",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "stargazers_count",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
                 "concreteType": "User",
-                "name": "owner",
+                "name": "postedBy",
                 "plural": false,
                 "selections": [
                   {
@@ -186,48 +183,15 @@ const batch /*: ConcreteBatch*/ = {
                   }
                 ],
                 "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "name",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "stargazers_count",
-                "storageKey": null
               }
-            ],
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "name": "postedBy",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "login",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            ]
           }
         ],
         "storageKey": "feed{\"limit\":5,\"type\":\"NEW\"}"
       }
     ]
   },
-  "text": "query AppFeedQuery {\n  feed(type: NEW, limit: 5) {\n    repository {\n      owner {\n        login\n      }\n      name\n      stargazers_count\n    }\n    postedBy {\n      login\n    }\n  }\n}\n"
+  "text": "query AppFeedQuery {\n  feed(type: NEW, limit: 5) {\n    ...Feed\n  }\n}\n\nfragment Feed on Entry {\n  repository {\n    owner {\n      login\n    }\n    name\n  }\n  ...FeedEntry\n}\n\nfragment FeedEntry on Entry {\n  repository {\n    owner {\n      login\n    }\n    name\n    stargazers_count\n  }\n  postedBy {\n    login\n  }\n}\n"
 };
 
 module.exports = batch;
