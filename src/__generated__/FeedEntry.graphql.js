@@ -3,36 +3,31 @@
  *   relay-compiler
  *
  * @providesModule FeedEntry.graphql
- * @generated SignedSource<<c28af434626a1e53966c588ba453bb29>>
+ * @generated SignedSource<<408e46a27817a6473daa061de8f80517>>
  * @flow
  * @nogrep
  */
+
+/* eslint-disable */
 
 'use strict';
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type FeedEntry = {
-  repository: FeedEntry_repository;
-  postedBy: FeedEntry_postedBy;
-};
-
-export type FeedEntry_repository_owner = {
-  login: string;
-};
-
-export type FeedEntry_repository = {
-  owner?: ?FeedEntry_repository_owner;
-  name: string;
-  stargazers_count: number;
-};
-
-export type FeedEntry_postedBy = {
-  login: string;
-};
+export type FeedEntry = {|
+  +repository: {|
+    +owner: ?{|
+      +login: string;
+    |};
+    +name: string;
+    +stargazers_count: number;
+  |};
+  +postedBy: {|
+    +login: string;
+  |};
+|};
 */
 
-/* eslint-disable comma-dangle, quotes */
 
 const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],

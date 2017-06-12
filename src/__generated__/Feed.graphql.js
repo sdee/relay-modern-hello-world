@@ -3,30 +3,27 @@
  *   relay-compiler
  *
  * @providesModule Feed.graphql
- * @generated SignedSource<<7aff61b5bf7d9c889cb4705fca187c8d>>
+ * @generated SignedSource<<b447e9d0217b14bedb20181b9f14cbcc>>
  * @flow
  * @nogrep
  */
+
+/* eslint-disable */
 
 'use strict';
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type Feed = {
-  repository: Feed_repository;
-};
-
-export type Feed_repository_owner = {
-  login: string;
-};
-
-export type Feed_repository = {
-  owner?: ?Feed_repository_owner;
-  name: string;
-};
+export type Feed = {|
+  +repository: {|
+    +owner: ?{|
+      +login: string;
+    |};
+    +name: string;
+  |};
+|};
 */
 
-/* eslint-disable comma-dangle, quotes */
 
 const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
